@@ -1,36 +1,34 @@
 from django.db import models
-from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
-)
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
-class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
+class UserManager(BaseUserManager):
+    def create_user(self, email, full_name, password=None):
         """
-        Creates and saves a User with the given email, date of
-        birth and password.
+        Creates and saves a User with the given email, full name
+        and password.
         """
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError("Users must have an email address")
 
         user = self.model(
             email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
+            full_name=full_name,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, password=None):
+    def create_superuser(self, email, full_name, password=None):
         """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
+        Creates and saves a superuser with the given email, full name
+        and password.
         """
         user = self.create_user(
             email,
             password=password,
-            date_of_birth=date_of_birth,
+            full_name=full_name,
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -39,7 +37,7 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name="email address",
         max_length=255,
         unique=True,
     )
@@ -48,10 +46,13 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    objects = MyUserManager()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['full_name']
+    objects = UserManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["full_name"]
 
     class Meta:
         db_table = "users"
