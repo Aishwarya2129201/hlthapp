@@ -42,11 +42,14 @@ class User(AbstractBaseUser):
         unique=True,
     )
     full_name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=15, blank=True, null=True)
     is_doctor = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    consulting_fees = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    consulting_fees = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
