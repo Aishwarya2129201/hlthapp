@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Appointment Success Page</h1>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{ slot.date }}</h5>
+                    <div>
+                        <span class="d-inline badge bg-secondary">{{ slot.start_time }}</span>
+                        <span> - </span>
+                        <span class="d-inline badge bg-secondary">{{ slot.end_time }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <h5>Doctor Details</h5>
+            <p>Name: {{ doctor.full_name }}</p>
+            <p>Fees: Rs {{ doctor.consulting_fees }}</p>
+            <button class="btn btn-primary" id="rzp-button1">Pay Now</button>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock body %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-8">
+            <div class="row">
+                {% for slot in slots %}
+                <div class="col-3 my-2">
+                    <a href="{% url 'appointments-checkout' slot_id=slot.id %}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>{{ slot.date }}</h5>
+                                <div>
+                                    <span class="d-inline badge bg-secondary">{{ slot.start_time }}</span>
+                                    <span> - </span>
+                                    <span class="d-inline badge bg-secondary">{{ slot.end_time }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-4">
+            <h5>Doctor Details</h5>
+            <p>Name: {{ doctor.full_name }}</p>
+            <p>Fees: Rs {{ doctor.consulting_fees }}</p>
+        </div>
+    </div>
+</div>
+{% endblock body %}
