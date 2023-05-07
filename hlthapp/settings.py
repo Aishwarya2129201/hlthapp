@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "modules.appointments",
     "modules.payments",
     "pages",
+    "fontawesomefree",
 ]
 
 MIDDLEWARE = [
