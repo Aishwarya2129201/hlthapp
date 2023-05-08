@@ -8,34 +8,42 @@
 
 {% block body %}
 <div class="container">
-    <h5>Register</h5>
-    <form method="post" action="{% url 'register' %}">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                name="full_name">
+    <div class="row">
+        <div class="column col-lg-6">
+            <img src="{% static 'media/Capture1.PNG' %}" alt="" width="750" height="750">
         </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+        <div class="column col-lg-6 pd-5 mt-5">
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="mb-3 pd-5 mt-5">
+                    <label for="exampleInputEmail1" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        name="full_name">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="confirm_password">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="is_doctor">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Is Doctor
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="confirm_password">
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="is_doctor">
-            <label class="form-check-label" for="flexCheckDefault">
-                Is Doctor
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+        
+    </div>
+    
 </div>
 {% endblock body %}
 

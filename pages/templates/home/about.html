@@ -1,7 +1,36 @@
 {% include 'base.html' %}
 {% include 'navbar.html' %}
+{% load static %}
 
 {% block content %}
-<h1>About US</h1>
+<div class="container content-md welcomeSection">
+    <div class="row section1">
+        <div class="col-md-6" style="margin-bottom: 40px;" style="border:2px solid black;">
+            <br>
+            <h2 class="title-v2">WELCOME TO <span style="color: rgb(10, 182, 205);"> AYURLAYA </span></h2>
+            <br><br><br>
+            <p style="text-align: justify; font-size: 14px;">AYURLAYA will step towards the modernization of
+                humans through digital consultation management and treatment of the disease. Prevention is
+                better than cure, likewise this project will tell the patient's result beforehand, so that one
+                will consult doctor’s for confirmation and medication. Smart health management will create a
+                major impact on the society and cause uproar.</p>
+            <p style="text-align: justify; font-size: 14px;">The Ayurlaya is a comprehensive solution for health
+                monitoring and analysis that combines advanced data tracking with personalized recommendations.
+                The platform provides users with an easy-to-use interface for tracking their health metrics.
+                Ayurlaya helps users to stay informed and make informed decisions about their health. The
+                platform has the potential to improve patient outcomes and reduce healthcare costs by
+                identifying potential health issues early and allowing for timely interventions.</p>
+            <p style="text-align: justify; font-size: 14px;"> Ayurlaya provides holistic healthcare that
+                includes prevention, treatment, rehabilitation and health education for patients, their families
+                and clients by touching their lives.</p> <br>
+            <a href="../about.html" class="btn btn-outline-primary">Read More</a>
+        </div>
+        <div class="col-md-6 overflow-h">
+            <img style="border-radius: 5px; margin-left: 3px; height: 100%; width: 100%;"
+                src="{% static 'media/3763028.jpg' %}" alt="Image Not Found">
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
 <!-- {% include 'footer.html' %} -->
