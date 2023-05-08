@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "modules.payments",
     "modules.recommender",
     "pages",
+    "fontawesomefree",
 ]
 
 MIDDLEWARE = [

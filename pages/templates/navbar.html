@@ -1,34 +1,80 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">HLTH</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<!--Main Navigation-->
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'recommender' %}">Recommender</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'appointments-list' %}">View Appointments</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                {% if request.user.is_authenticated %}
-                <li class="nav-item mx-2">
-                    <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item mx-2">
-                    <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="{% url 'register' %}" class="btn btn-success btn-sm">Register</a>
-                </li>
-                {% endif %}
-            </ul>
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/home/navbar.css' %}">
+{% endblock style %}
+<header>
+   
+    <nav class="navbar navbar-expand-lg fixed-top navbar-scroll navbar-dark shadow-5-strong">
+        <div class="container-fluid">
+            
+            <div class="collapse navbar-collapse" id="navbarExample01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'media/Logo1.PNG' %}" alt="Logo" width="200" height="75"
+                            class="d-inline-block align-text-top">
+                    </a>
+                </ul>
+                <ul class="navbar-nav flex-row ms-auto font-weight-bold">
+                    <li class="nav-item active">
+                        <a class="nav-link btn btn-outline-light" aria-current="page" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light" href="{% url 'about' %}">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'recommender' %}">Recommender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'appointments-list' %}">View Appointments</a>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item mx-2">
+                        <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Login</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="{% url 'register' %}" class="btn btn-outline-light btn-sm">Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    <!-- Animated navbar -->
+
+    <!-- Background image -->
+    <!-- <div
+      id="intro"
+      class="bg-image"
+      style="
+        background-image: url(https://mdbootstrap.com/img/new/fluid/city/113.webp);
+        height: 100vh;
+      "
+    >
+      <div class="mask text-white" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="container d-flex align-items-center text-center h-100">
+          <div>
+            <h1 class="mb-5">This is title</h1>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis molestiae
+              laboriosam numquam expedita ullam saepe ipsam, deserunt provident corporis,
+              sit non accusamus maxime, magni nulla quasi iste ipsa architecto? Autem!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- Background image -->
+</header>
+<!--Main Navigation-->

@@ -1,0 +1,107 @@
+{% include 'base.html' %}
+{% include 'navbar.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock css %}
+
+<!-- <style>
+     .mydivstyle:hover{
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+    transform: translateY(-20px);
+
+ }
+</style> -->
+
+{% block content %}
+
+<div class="row">
+    <div class="col " >
+    
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14961.745359670109!2d85.8383847!3d20.364891450000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1908e064769e73%3A0x9288172f3a98c7a4!2sSilicon%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1658469246920!5m2!1sen!2sin" 
+        width="100%" height="450" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+</div>
+<div class="row">
+    <div class="column">
+        <div class="card">
+            <h3 class="h4 my-2">HOW CAN WE HELP?</h3>
+            <h3 class="h4 my-2">Send us a message.</h3>
+            <div class="row mt-5">
+                <div class="column">
+                    <div class="card">
+                        <div class="card-header">
+                            Address:
+                        </div>
+                        <div class="card-body">    
+                       Silicon Hills<br>
+                       Patia, Bhubaneswar.<br>
+                       PIN-751024
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="column text-center">
+                    <div class="card">
+                        <h5><i class="fas fa-phone-square">Call Us.</i></h5>
+                        <p class="text-primary"><a href="tel:+919861125646" class="href">+919861125646</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 ">
+                <div class="col-lg-3 col-sm-6 mydivstyle">
+                    <div class="card">
+                        <a href="mailto:aishwarya2129201@gmail.com" target="_blank " style="text-decoration:none; color: #123456;"><i class="fas fa-envelope text-dark "></i>Email</a>
+                    </div>
+                    </div>
+                <div class="col-lg-3 col-sm-6 mydivstyle">
+                    <div class="card">
+                        <a href="https://www.instagram.com/s_aishwarya219/" target="_blank " style="text-decoration:none; color: #123456;"><i class="fa-brands fa-instagram"></i>Instagram</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mydivstyle">
+                    <div class="card">
+                        <a href="https://twitter.com/im_Aishwarya219?t=RJkkd43uzdTFMAc0WXxU4w&s=08" target="_blank " style="text-decoration:none; color: #123456;"><i class="fa-brands fa-twitter"></i> Twitter</a>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <div class="column">
+        <div class="card">
+            <form action="" onsubmit="return validate();">
+                <div class="mb-1">
+                    <label for="name">Name<span class="text-danger">*</span></label>
+                    <input type="text" name="name" id="name" class="form-control">
+                    <label for="name error" id="name_error" class="text-danger"></label>
+                </div>
+    
+                <div class="mb-1">
+                    <label for="mobile">Mobile Number<span class="text-danger">*</span></label>
+                    <input type="number" name="mobile" id="mobile" class="form-control">
+                    <label for="mobile error" id="mobile_error" class="text-danger"></label>
+                </div>
+                
+                <div class="mb-1">
+                    <label for="email">Email<span class="text-danger">*</span></label>
+                    <input type="text" name="email" id="email" class="form-control">
+                    <label for="email error" id="email_error" class="text-danger"></label>
+                </div>
+    
+                <div class="mb-1">
+                    <label for="suggest">Suggestions<span class="text-danger">*</span></label>
+                    <textarea name="suggest" id="suggest" cols="95" rows="5" class="form-control w-100"></textarea>
+                    <label for="suggest error" id="suggest_error" class="text-danger"></label>
+                </div>
+                
+                
+                <input type="submit" value="Sign Up" class="btn btn-primary w-100">
+            </form>
+        </div>
+    </div>
+</div>
+ 
+{% endblock content %}
