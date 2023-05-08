@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="container">
-    <h1>Appointment Success Page</h1>
+    <h5>Appointment scheduled successfully</h5>
     <div class="row">
         <div class="col-6">
             <div class="card">
@@ -23,8 +23,9 @@
         <div class="col-6">
             <h5>Doctor Details</h5>
             <p>Name: {{ doctor.full_name }}</p>
-            <p>Fees: Rs {{ doctor.consulting_fees }}</p>
-            <button class="btn btn-primary" id="rzp-button1">Pay Now</button>
+            <p>Payment ID - {{ payment.payment_id }}</p>
+            <div id="emailHelp" class="form-text">Please note the payment ID for further issues if any !!</div>
+            <a href="{% url 'appointments-list' %}" class="btn btn-secondary btn-sm">View Appointments</a>
         </div>
     </div>
 </div>

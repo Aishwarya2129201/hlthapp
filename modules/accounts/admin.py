@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
-from .models import User, Slot
+from .models import User, Slot, Specialization
 
 
 class UserCreationForm(forms.ModelForm):
@@ -56,6 +56,10 @@ class SlotInlineAdmin(admin.TabularInline):
     extra = 1
 
 
+class SpecializationInline(admin.StackedInline):
+    model = Specialization
+
+
 class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
@@ -70,7 +74,14 @@ class UserAdmin(BaseUserAdmin):
         (None, {"fields": ["email", "password"]}),
         ("Personal info", {"fields": ["full_name", "phone"]}),
         ("Permissions", {"fields": ["is_admin", "is_doctor"]}),
-        ("Doctor Details", {"fields": ["consulting_fees"]})
+        (
+            "Doctor Details",
+            {
+                "fields": [
+                    "consulting_fees",
+                ]
+            },
+        ),
     ]
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -86,7 +97,7 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ["email"]
     ordering = ["email"]
     filter_horizontal = []
-    inlines = [SlotInlineAdmin]
+    inlines = [SlotInlineAdmin, SpecializationInline]
 
 
 # Now register the new UserAdmin...

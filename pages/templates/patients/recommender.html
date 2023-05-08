@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form action="{% url 'recommender' %}" method="POST">
+                {% csrf_token %}
+                <h5>Please select top 3 symptomps</h5>
+                <div>
+                    <label for="" class="form-label">First Symptom</label>
+                    <select class="form-select" aria-label="Default select example" name="first_symptom">
+                        <option selected>Open this select menu</option>
+                        {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="" class="form-label">Second Symptom</label>
+                    <select class="form-select" aria-label="Default select example" name="second_symptom">
+                        <option selected>Open this select menu</option>
+                        {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="" class="form-label">Third Symptom</label>
+                    <select class="form-select" aria-label="Default select example" name="third_symptom">
+                        <option selected>Open this select menu</option>
+                        {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button class="btn btn-primary mt-2" type="submit">Predict</button>
+            </form>
+        </div>
+        <div class="col-4 mt-3">
+            {% if prediction %}
+            <h4>Predictions</h4>
+            <h5>Predicted Disease: {{ disease }}</h5>
+            <div id="emailHelp" class="form-text">For further details contact one of our specialist !!</div>
+            <ul class="list-group">
+                {% for doctor in doctors %}
+                <li class="list-group-item">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div>
+                            <span>
+                                {{ doctor.full_name }}
+                            </span>
+                        </div>
+                        <div>
+                            <a href="{% url 'appointments-create' %}?doctor_id={{ doctor.id }}">Consult Now <svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body %}
