@@ -28,6 +28,13 @@
                         <a class="nav-link btn btn-outline-light" href="{% url 'about' %}">About</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'recommender' %}">Recommender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'appointments-list' %}">View Appointments</a>
+                    </li>
+
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a href="{% url 'logout' %}" class="btn btn-secondary btn-sm">Logout</a>

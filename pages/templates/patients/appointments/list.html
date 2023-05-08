@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Slot</th>
+                <th scope="col">Payment ID</th>
+                <th scope="col">Doctor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <th scope="row">1</th>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.start_time }} - {{ appointment.end_time }}</td>
+                <td>{{ appointment.payment.payment_id }}</td>
+                <td>{{ appointment.doctor.full_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock body %}

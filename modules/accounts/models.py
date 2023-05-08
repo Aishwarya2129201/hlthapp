@@ -82,6 +82,31 @@ class User(AbstractBaseUser):
         return self.is_admin
 
 
+class Specialization(models.Model):
+    DISEASE_CHOICES = (
+        ("Acne", "Acne"),
+        ("Impetigo", "Impetigo"),
+        ("Arthritis", "Arthritis"),
+        ("Pneumonia", "Pneumonia"),
+        ("Heart Attack,Allergy", "Heart Attack,Allergy"),
+        ("Hyperthyroidism", "Hyperthyroidism"),
+        ("Common Cold", "Common Cold"),
+        ("Typhoid", "Typhoid"),
+        ("Fungal infection", "Fungal infection")
+    )
+
+    doctor = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="specializations"
+    )
+    disease = models.CharField(max_length=100, choices=DISEASE_CHOICES)
+
+    class Meta:
+        db_table = "specializations"
+
+    def __str__(self) -> str:
+        return self.disease
+
+
 class Slot(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="slots")
     date = models.DateField()

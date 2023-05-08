@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "modules.accounts",
     "modules.appointments",
     "modules.payments",
+    "modules.recommender",
     "pages",
     "fontawesomefree",
 ]

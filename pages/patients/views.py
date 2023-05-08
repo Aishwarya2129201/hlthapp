@@ -10,6 +10,39 @@ from django.views.decorators.csrf import csrf_exempt
 from modules.accounts.models import User, Slot
 from modules.payments.models import Payment
 from modules.appointments.models import Appointment
+from modules.recommender.choices import symptoms
+from modules.recommender.service import predict_disease
+
+
+@login_required
+def recommender(request):
+    if request.method == "POST":
+        first_symptom = request.POST.get("first_symptom")
+        second_symptom = request.POST.get("second_symptom")
+        third_symptom = request.POST.get("third_symptom")
+
+        disease = predict_disease([first_symptom, second_symptom, third_symptom])
+        doctors = User.objects.filter(is_doctor=True, specializations__disease=disease)
+
+        context = {
+            "prediction": True,
+            "disease": disease,
+            "doctors": doctors,
+            "symptoms": symptoms,
+        }
+        return render(request, "patients/recommender.html", context)
+
+    context = {"symptoms": symptoms, "prediction": False}
+    return render(request, "patients/recommender.html", context)
+
+
+@login_required
+def appointments_list(request):
+    appointments = Appointment.objects.filter(
+        patient=request.user, is_approved=True, payment__status=Payment.Status.SUCCESS
+    ).select_related("doctor", "payment")
+    context = {"appointments": appointments}
+    return render(request, "patients/appointments/list.html", context)
 
 
 @login_required
@@ -70,7 +103,9 @@ def appointments_confirm(request, slot_id):
     slot = get_object_or_404(Slot, id=slot_id)
 
     payment.payment_id = payment_id
+    payment.status = Payment.Status.SUCCESS
     payment.save()
+
     appointment = Appointment.objects.create(
         patient=request.user,
         doctor=slot.user,
@@ -82,9 +117,9 @@ def appointments_confirm(request, slot_id):
     )
 
     context = {
-        'appointment': appointment,
-        'payment': payment,
-        'slot': slot,
-        'doctor': slot.user,
+        "appointment": appointment,
+        "payment": payment,
+        "slot": slot,
+        "doctor": slot.user,
     }
     return render(request, "patients/appointments/confirm.html", context)
